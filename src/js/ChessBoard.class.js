@@ -18,7 +18,7 @@ class ChessBoard{
 
 
   }
-  
+
   updatePieces(){
 
     for(let i = 0; i < this.field.length; i++){
