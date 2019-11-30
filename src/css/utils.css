@@ -1,0 +1,14 @@
+body{
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: 0;
+  padding: 0;
+
+  background-color: #25383C;
+
+  overflow: hidden;
+
+}

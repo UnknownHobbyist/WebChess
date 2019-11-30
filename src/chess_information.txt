@@ -1,0 +1,37 @@
+Solange wie der König angegriffen ist muss dies beendet werden. Sollte dies nicht möglich sein, so ist der
+Partie zuende und der angreifende Spieler hat gewonnen.
+
+1. Welche Züge sind mit dem Bauern möglich
+  1.0 Es ist dem Bauer nicht möglich über besetzte Felder zu gehen
+  1.1 Der Bauer darf, solange er auf seinem Anfangsfeld steht darf er 2 Felder nach vorne gezogen werden
+  1.2 Der Bauer kann nach vorne links und nach vorne rechts schlagen (nur wenn dort eine Figur steht)
+  1.3 Der Bauer darf 1 Feld nach vorne gezogen werden
+  1.4 Wenn der Gegner Regel 1.1 benutzt und der gezogene Bauer direkt neben einem eigenen Bauer steht, so
+      kann geschlagen werden, als wäre der Bauer nur ein Schritt nach vorne gegangen (ref. en passant)
+  1.5 Zieht der Bauer durch und steht auf der Grundreihe der gegnerischen Seite, so kann sich der Spieler
+      eine Figur wünschen, die dann den Bauern ersetzt
+
+2. Welche Züge sind mit dem Springer möglich
+  1.1 Der Springer darf über besetzte Felder ziehen
+  1.2 Der Springer wird so bewegt, dass er 2 Felder gerade zieht und dann auf ein beliebiges nebenliegendes
+      Feld gestellt wird insofern
+  1.3 Ebenso wie der Springer zieht kann er auch schlagen
+
+3. Welche Züge sind mit dem Läufer möglich
+  1.1 Der Läufer kann nicht über besetzte Felder gezogen werden
+  1.2 Der Läufer darf auf alle Felder gesetzt werden, die schräg von im aus gesehen liegen
+  1.3 So wie der Läufer zieht schlägt er auch
+
+4. Welche Züge sind mit dem Turm möglich
+  1.1 Der Turm darf nicht über besetzte Felder ziehen
+  1.2 Der Turm darf auf alle vom im aus gesehen geraden Felder
+  1.3 So wie der Turm zieht schlägt er auch
+
+5. Welche Züge sind mit der Dame möglich
+  1.1 Die Dame kann die gleichen Züge wie die Kombination vom Läufer und Turm
+
+6. Welche Züge sind mit dem König möglich
+  1.1 Der König darf nicht über besetzte Felder laufen
+  1.2 Der König darf nur so ziehen, dass er von keiner feindlichen Figur angegriffen wird
+  1.3 Der König darf auf alle von ihm aus gesehen anliegenden Felder
+  1.4 Der König darf so schlagen wie er zieht

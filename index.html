@@ -1,0 +1,161 @@
+<html>
+  <head>
+
+    <title>Supergen - Chess</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta charset="UTF-8"/>
+
+    <link rel="stylesheet" href="src/css/index.css" type="text/css"/>
+    <link rel="stylesheet" href="src/css/utils.css" type="text/css"/>
+
+    <script src="src/js/ChessBoard.class.js"></script>
+    <script src="src/js/ChessGame.class.js"></script>
+    <script src="src/js/Move.class.js"></script>
+    <script src="src/js/Turn.class.js"></script>
+    <script src="src/js/Position.class.js"></script>
+
+    <script type="text/javascript">
+
+      var chess;
+
+
+
+
+      window.onload = function(){
+
+        init();
+        init_listeners();
+
+      };
+
+
+      function init(){
+
+        let c_board = document.getElementById("c-board"), c_field;
+
+        for(let i = 0; i < 8; i++){
+
+          for(let j = 0; j < 8; j++){
+
+            c_field = document.createElement("c-field");
+
+            if((i + j) % 2 == 0){
+
+              c_field.setAttribute("class", "white_field");
+
+            }else{
+
+              c_field.setAttribute("class", "black_field");
+
+            }
+
+            c_board.appendChild(c_field);
+
+          }
+
+        }
+
+        chess = new ChessGame();
+
+        this.chess.setPiece(new Position(0, 0), this.chess.PIECES.BLACK_ROOK);
+        this.chess.setPiece(new Position(1, 0), this.chess.PIECES.BLACK_KNIGHT);
+        this.chess.setPiece(new Position(2, 0), this.chess.PIECES.BLACK_BISHOP);
+        this.chess.setPiece(new Position(3, 0), this.chess.PIECES.BLACK_QUEEN);
+        this.chess.setPiece(new Position(4, 0), this.chess.PIECES.BLACK_KING);
+        this.chess.setPiece(new Position(5, 0), this.chess.PIECES.BLACK_BISHOP);
+        this.chess.setPiece(new Position(6, 0), this.chess.PIECES.BLACK_KNIGHT);
+        this.chess.setPiece(new Position(7, 0), this.chess.PIECES.BLACK_ROOK);
+        this.chess.setPiece(new Position(0, 1), this.chess.PIECES.BLACK_PAWN);
+        this.chess.setPiece(new Position(1, 1), this.chess.PIECES.BLACK_PAWN);
+        this.chess.setPiece(new Position(2, 1), this.chess.PIECES.BLACK_PAWN);
+        this.chess.setPiece(new Position(3, 1), this.chess.PIECES.BLACK_PAWN);
+        this.chess.setPiece(new Position(4, 1), this.chess.PIECES.BLACK_PAWN);
+        this.chess.setPiece(new Position(5, 1), this.chess.PIECES.BLACK_PAWN);
+        this.chess.setPiece(new Position(6, 1), this.chess.PIECES.BLACK_PAWN);
+        this.chess.setPiece(new Position(7, 1), this.chess.PIECES.BLACK_PAWN);
+
+        this.chess.setPiece(new Position(0, 6), this.chess.PIECES.WHITE_PAWN);
+        this.chess.setPiece(new Position(1, 6), this.chess.PIECES.WHITE_PAWN);
+        this.chess.setPiece(new Position(2, 6), this.chess.PIECES.WHITE_PAWN);
+        this.chess.setPiece(new Position(3, 6), this.chess.PIECES.WHITE_PAWN);
+        this.chess.setPiece(new Position(4, 6), this.chess.PIECES.WHITE_PAWN);
+        this.chess.setPiece(new Position(5, 6), this.chess.PIECES.WHITE_PAWN);
+        this.chess.setPiece(new Position(6, 6), this.chess.PIECES.WHITE_PAWN);
+        this.chess.setPiece(new Position(7, 6), this.chess.PIECES.WHITE_PAWN);
+        this.chess.setPiece(new Position(0, 7), this.chess.PIECES.WHITE_ROOK);
+        this.chess.setPiece(new Position(1, 7), this.chess.PIECES.WHITE_KNIGHT);
+        this.chess.setPiece(new Position(2, 7), this.chess.PIECES.WHITE_BISHOP);
+        this.chess.setPiece(new Position(3, 7), this.chess.PIECES.WHITE_QUEEN);
+        this.chess.setPiece(new Position(4, 7), this.chess.PIECES.WHITE_KING);
+        this.chess.setPiece(new Position(5, 7), this.chess.PIECES.WHITE_BISHOP);
+        this.chess.setPiece(new Position(6, 7), this.chess.PIECES.WHITE_KNIGHT);
+        this.chess.setPiece(new Position(7, 7), this.chess.PIECES.WHITE_ROOK);
+
+        this.chess.board.updatePieces();
+
+      }
+      function init_listeners(){
+
+        var hidden_piece = document.getElementById("hidden-piece");
+        var dragging = false;
+        var startPos, endPos;
+
+        window.onmousedown = function(e){
+
+          if(e.target.tagName === "C-PIECE" && e.target.classList.item(0) !== "0"){
+
+            hidden_piece.style.display = "block";
+            hidden_piece.style.marginTop = (e.clientY - 27) + "px";
+            hidden_piece.style.marginLeft = (e.clientX - 27) + "px";
+            hidden_piece.setAttribute("class", e.target.classList.item(0));
+
+            dragging = true;
+
+            let x = Math.floor((e.clientX - chess.domBoard.offsetLeft)/64);
+            let y = Math.floor((e.clientY - chess.domBoard.offsetTop)/64);
+
+            startPos = new Position(x, y);
+
+          }
+
+        };
+
+        window.onmouseup = function(e){
+
+          if(dragging){
+
+            let x = Math.floor((e.clientX - chess.domBoard.offsetLeft)/64);
+            let y = Math.floor((e.clientY - chess.domBoard.offsetTop)/64);
+
+            chess.movePiece(new Move(startPos, new Position(x, y), chess.getPieceType(chess.getPiece(startPos.x, startPos.y))));
+
+            hidden_piece.style.display = "none";
+            dragging = false;
+            startPos = null;
+
+          }
+
+        };
+
+        window.onmousemove = function(e){
+
+          if(dragging){
+
+            hidden_piece.style.marginTop = (e.clientY - 27) + "px";
+            hidden_piece.style.marginLeft = (e.clientX - 27) + "px";
+
+          }
+
+        }
+
+      }
+
+    </script>
+  </head>
+  <body>
+    <hidden-piece id="hidden-piece"></hidden-piece>
+    <c-board id="c-board">
+    </c-board>
+  </body>
+</html>

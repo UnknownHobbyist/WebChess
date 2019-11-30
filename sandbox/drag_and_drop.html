@@ -1,0 +1,64 @@
+<html>
+  <head>
+    <title>Sandbox</title>
+
+    <style>
+      body{
+        margin: 0;
+        padding: 0;
+      }
+      .item{
+        height: 64px;
+        width: 64px;
+
+        background: red;
+      }
+    </style>
+
+    <script>
+
+      var mouseDown = false;
+      var draggedItem = null;
+
+      window.onmousedown = function(e){
+
+        if(e.target.classList.item(0) === "item"){
+
+          draggedItem = e.target;
+
+          draggedItem.style.position = "absolute";
+          draggedItem.style.marginTop = (e.clientY - 27) + "px";
+          draggedItem.style.marginLeft = (e.clientX - 27) + "px";
+
+        }
+
+        mouseDown = true;
+
+      };
+
+      window.onmouseup = function(e){
+
+        mouseDown = false;
+        draggedItem = null;
+
+      };
+
+      window.onmousemove = function(e){
+
+        if(mouseDown && draggedItem){
+
+          draggedItem.style.marginTop = (e.clientY - 27) + "px";
+          draggedItem.style.marginLeft = (e.clientX - 27) + "px";
+
+        }
+
+      }
+
+    </script>
+
+  </head>
+  <body>
+    <div class="item"></div>
+
+  </body>
+</html>
